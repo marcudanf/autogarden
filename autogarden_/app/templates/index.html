@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			Autogarden
+		</title>
+		<style>
+			span{
+				margin-left:2%;
+			}
+			a{
+				color:black;
+				text-decoration:none;
+			}
+			.settings{
+				font-size:32px;
+				/*width:100%;
+				height:15%;*/
+				background-color:grey;
+			}
+			.content{
+				/*width:80%;
+				float:right;*/
+				text-align:center;
+				background-color:grey;
+				padding-left:2%;
+				padding-right:5%;
+				padding-bottom:1%;
+				padding-top:1%;
+				font-size:20px;
+				margin-bottom:1px;
+			}
+			.separator{
+				font-size:32px;
+			}
+			.s{
+				width:100%;
+				height:2px;
+				background-color:black;
+			}
+			.blue{
+				font-weight:bold;
+				color:blue;
+				width:0px;
+				height:0px;
+				float:left;
+			}
+			.green{
+				margin-right:2%;
+				width:0px;
+				height:0px;
+				float:left;
+				font-weight:bold;
+				color:#11ff00;
+			}
+			.red{
+				background-color:red;
+			}
+			.Blue{
+				background-color:#e0c82a;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+			<a href='/settings'>
+				<div class='settings'>
+					Setari
+				</div>
+			</a>
+			<div class='separator'>
+				Control Aer
+			</div>
+			{%for e in entries%}
+				{%if e.module_type == 1%}
+					<a href='/module/{{e.module_id}}'>
+						<div class='content'>
+							<div class='blue'>{{e.module_id}}:</div>
+							{{e.pub_date}}&emsp;<!--<div style='width:10px;height:5px;'></div>-->
+							<span>Int={{e.temperature}}°C&nbsp;
+							H={{e.humidity}}%&nbsp;
+							Ext={{e.val}}°C</span>
+						</div>
+					</a>
+				{%endif%}
+			{%endfor%}
+			<div class='separator'>
+				Tavi
+			</div>
+			{%for e in entries%}
+				{%if e.module_type == 0%}
+					{%if e.humidity < critical or e.val < critical%}
+						<a href='/module/{{e.module_id}}'>
+							<div class='content red'>
+								<div class='green'>{{e.module_id}}:</div>
+								{{e.pub_date}}&emsp;<!--<div style='width:10px;height:5px;'></div>-->
+								<span>T={{e.temperature}}°C&nbsp;
+								H={{e.humidity}}, {{e.val}}</span>
+							</div>
+						</a>
+					{%elif e.humidity < critical1  or e.val < critical1%}
+						<a href='/module/{{e.module_id}}'>
+							<div class='content Blue'>
+								<div class='green'>{{e.module_id}}:</div>
+								{{e.pub_date}}&emsp;<!--<div style='width:10px;height:5px;'></div>-->
+								<span>T={{e.temperature}}°C&nbsp;
+								H={{e.humidity}}, {{e.val}}</span>
+							</div>
+						</a>
+					{%else%}
+						<a href='/module/{{e.module_id}}'>
+							<div class='content'>
+								<div class='green'>{{e.module_id}}:</div>
+								{{e.pub_date}}&emsp;<!--<div style='width:10px;height:5px;'></div>-->
+								<span>T={{e.temperature}}°C&nbsp;
+								H={{e.humidity}}, {{e.val}}</span>
+							</div>
+						</a>
+					{%endif%}
+				{%endif%}
+			{%endfor%}
+		</center>
+	</body>
+</html>
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ESP_{{entry.module_id}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			.content{
+				font-size:28px;
+			}
+			.big{
+				font-size:36px;
+			}
+			.separator{
+				width:100%;
+				height:3px;
+				background-color:black; 
+			}
+			a{
+                color:black;
+                text-decoration:none;
+            }
+            .bt{
+                border-radius:5%;
+                height:50px;
+                font-size:34px;
+                background-color:grey;
+
+            }
+		</style>
+	</head>
+	<body>
+		<center>
+			<h1 class='big'>
+				Control Aer
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				Interior:{{entry.temperature}}°C<br/>
+				Exterior:{{entry.val}}°C
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				Umiditate={{entry.humidity}}%
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				{{entry.pub_date}}
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				Aeroterma {{entry.hours}}h {{entry.minutes}}m {{entry.seconds}}s
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				Ventilatoare {{entry.hours2}}h {{entry.minutes2}}m {{entry.seconds2}}s
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				Nr porniri: {{entry.count}}
+			</h1>
+			<div class='separator'></div>
+			<br/>
+            <a href='../log/{{entry.module_id}}'>
+                <div class='bt'>
+                    Log
+                </div>
+            </a>
+            <br/>
+            <a href='../'>
+                <div class='bt'>
+                    Home
+                </div>
+            </a>
+		</center>
+	</body>
+</html>
