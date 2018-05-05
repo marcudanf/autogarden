@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ESP_{{entry.module_id}}</title>
+		<meta name="theme-color" content="#0d873a" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script>
+			function Confirm(){
+				var ok = confirm("Restart {{entry.module_id}}??");
+				if(ok)
+					window.location.href = '../restart/{{entry.module_id}}';
+			}
+		</script>
+		<style>
+			.content{
+				font-size:28px;
+			}
+			.big{
+				font-size:36px;
+			}
+			.separator{
+				width:100%;
+				height:3px;
+				background-color:black; 
+			}
+			a{
+				color:black;
+				text-decoration:none;
+			}
+			.bt{
+				border-radius:5%;
+				height:50px;
+				font-size:34px;
+				background-color:grey;
+				
+			}
+			.blue{
+				background-color:blue;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+			<h1 class='big'>
+				Tava {{entry.module_id}}
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				Temperatura={{entry.temperature}}°C
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				Umiditate 1={{entry.humidity}}<br/>
+				Umiditate 2={{entry.val}}
+			</h1>
+			<div class='separator'></div>
+			<h1 class='content'>
+				{{entry.pub_date}}
+			</h1>
+			<div class='separator'></div>
+			<h1>
+				Timp pornit:<br/>
+				{{entry.hours}}h {{entry.minutes}}m {{entry.seconds}}s
+			</h1>
+			<div class='separator'></div>
+			<br/>
+			<div onclick='Confirm()' class='bt'>
+				Restart
+			</div>
+			<br/>
+			<a href='../log/{{entry.module_id}}'>
+				<div class='bt'>
+					Log
+				</div>
+			</a>
+			<br/>
+			<a href='../setari/{{entry.module_id}}'>
+				<div class='bt'>
+					Setari
+				</div>
+			</a>
+			<br/>
+			<a href='../'>
+				<div class='bt'>
+					Home
+				</div>
+			</a>
+		</center>
+	</body>
+</html>

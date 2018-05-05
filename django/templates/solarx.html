@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="theme-color" content="#0d873a"/>
+		<title>
+			Solar {{solar.no}}
+		</title>
+		<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+		<style>
+			html{
+				font-family: 'PT Sans', sans-serif;
+			}
+			a{
+				text-decoration:none;
+				color:black;
+			}
+			.switch{
+				margin-right:-15%;
+				position: relative;
+				display: inline-block;
+				width: 60px;
+				height: 34px;
+			}
+			.switch input{
+				display:none;
+			}
+			.slider{
+				position: absolute;
+				cursor: pointer;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: #ccc;
+				-webkit-transition: .3s;
+				transition: .3s;
+			}
+			.slider:before{
+				position: absolute;
+				content: "";
+				height: 26px;
+				width: 26px;
+				left: 4px;
+				bottom: 4px;
+				background-color: white;
+				-webkit-transition: .3s;
+				transition: .3s;
+			}
+			.small:before{
+				height:20px;
+				width:20px;
+			}
+			input:checked + .slider{
+				background-color: #2196F3;
+			}
+			input:focus + .slider{
+				box-shadow: 0 0 1px #2196F3;
+			}
+			input:checked + .slider:before{
+				-webkit-transform: translateX(26px);
+				-ms-transform: translateX(26px);
+				transform: translateX(26px);
+			}
+			.slider.round{
+				 border-radius: 34px;
+			}
+			.slider.round:before{
+				border-radius: 50%;
+			}
+			.separator{
+				width:100%;
+				background-color:black;
+				height:3px;
+			}
+			.h{
+				float:left;
+				margin-left:30%;
+				margin-top:0;
+			}
+			.small1{
+				margin-top:-10px;
+				margin-right:-10%;
+				height:28px;
+				width:55px;
+			}
+			input{
+				width:70%;
+				font-size:26px;
+				text-align:center;
+			}
+			.bt{
+				font-size:32px;
+				width:70%;
+				background-color:gray;
+				border-radius:10%;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+			<h1 class='h'>
+				Solar {{solar.no}}
+			</h1>
+			<form method='POST'>
+				{%csrf_token%}
+				{%if solar.active == 1%}
+					<label class='switch'>
+						<input name='active' type='checkbox' checked>
+						<span class='slider round'></span>
+					</label>
+				{%else%}
+					<label class='switch'>
+						<input name='active' type='checkbox'>
+						<span class='slider round'></span>
+					</label>
+				{%endif%}
+				<br/>
+				<div class='separator'></div>
+				<h2 style='margin-top:-10px;margin-bottom:0;' class='h'>
+					Dimineata
+				</h2>
+				</br>
+				{%if solar.on1 == 1%}
+					<label class='switch small1'>
+						<input name='on1' type='checkbox' checked>
+						<span class='slider round small'></span>
+					</label>
+				{%else%}
+					<label class='switch small1'>
+						<input name='on1' type='checkbox'>
+						<span class='slider round small'></span>
+					</label>
+				{%endif%}
+				<h2 style='margin-top:10px;'>
+					Ora
+				</h2>
+				<input name='time1' type='number' placeholder={{solar.time1}}></input>
+				<br/>
+				<h2>
+					Timp pornit
+				</h2>
+				<input name='dur1' type='number' placeholder={{solar.dur1}}></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<h2 style='margin-top:5px;margin-left:40%;margin-bottom:0;' class='h'>
+					Seara
+				</h2>
+				<br/>
+				{%if solar.on1 == 1%}
+					<label class='switch small1'>
+						<input name='on2' type='checkbox' checked>
+						<span class='slider round small'></span>
+					</label>
+				{%else%}
+					<label class='switch small1'>
+						<input name='on2' type='checkbox'>
+						<span class='slider round small'></span>
+					</label>
+				{%endif%}
+				<h2 style='margin-top:10px;'>
+					Ora
+				</h2>
+				<input name='time2' type='number' placeholder={{solar.time2}}></input>
+				<br/>
+				<h2>
+					Timp pornit
+				</h2>
+				<input name='dur2' type='number' placeholder={{solar.dur2}}></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<h2>
+					Zile
+				</h2>
+				<input name='days' type='number' placeholder={{solar.days}}></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<br/>
+				<input type='submit' value='Change'></input>
+				<br/>
+				<br/>
+			</form>
+			<a href='/solar'>
+				<div class='bt'>
+					Home
+				</div>
+			</a>
+		</center>
+	</body>
+</html>

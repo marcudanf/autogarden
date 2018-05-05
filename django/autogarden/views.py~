@@ -1,0 +1,11 @@
+from django.shortcuts import render
+from django.core.mail import send_mail
+
+def index(request):
+#	print("running default index")
+	return render(request, 'index.html', {})
+
+def mail(request):
+	song = request.GET.get('song')
+	send_mail(song, 'S-a repetat ' + song, 'auto.hot.garden@gmail.com', ['auto.hot.garden@gmail.com', 'marcuccorneliu@gmail.com', 'caius.marcu@gmail.com'], fail_silently=False)
+	return render(request, 'index.html', {})

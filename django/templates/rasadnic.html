@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content="#0d873a" />
+		<title>
+			Rasadnic
+		</title>
+		<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+		<style>
+			html{
+				font-family: 'PT Sans', sans-serif;
+			}
+			span{
+				margin-left:2%;
+			}
+			a{
+				color:black;
+				text-decoration:none;
+			}
+			.back{
+				font-size:32px;
+				background-color:grey;
+				margin-bottom:2px;
+			}
+			.settings{
+				font-size:32px;
+				/*width:100%;
+				height:15%;*/
+				background-color:grey;
+			}
+			.content{
+				/*width:80%;
+				float:right;*/
+				text-align:center;
+				background-color:grey;
+				padding-left:2%;
+				padding-right:5%;
+				padding-bottom:1%;
+				padding-top:1%;
+				font-size:20px;
+				margin-bottom:1px;
+			}
+			.separator{
+				font-size:32px;
+			}
+			.s{
+				width:100%;
+				height:2px;
+				background-color:black;
+			}
+			.blue{
+				font-weight:bold;
+				color:blue;
+				width:0px;
+				height:0px;
+				float:left;
+			}
+			.green{
+				margin-right:2%;
+				width:0px;
+				height:0px;
+				float:left;
+				font-weight:bold;
+				color:#11ff00;
+			}
+			.red{
+				background-color:red;
+			}
+			.Blue{
+				background-color:#feea15;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+			<a href='../'>
+				<div class='back'>
+					Back
+				</div>
+			</a>
+			<a href='/rasadnic/setari'>
+				<div class='settings'>
+					Setari
+				</div>
+			</a>
+			<div class='separator'>
+				Control Aer
+			</div>
+			{%for e in entries%}
+				{%if e.module.module_type == 1%}
+					<a href='/rasadnic/modul/{{e.module.module_id}}'>
+						<div class='content'>
+							<div class='blue'>{{e.module.module_id}}</div>
+							{{e.module.pub_date}}&nbsp;<br/>
+							<span>Int={{e.module.temperature}}°C&nbsp;
+							H={{e.module.humidity}}%&nbsp;
+							Ext={{e.module.val}}°C</span>
+						</div>
+					</a>
+				{%endif%}
+			{%endfor%}
+			<div class='separator'>
+				Tavi
+			</div>
+			{%for e in entries%}
+				{%if e.module.module_type == 0%}
+					{%if e.module.humidity < e.crit or e.val < e.crit%}
+						<a href='/rasadnic/modul/{{e.module.module_id}}'>
+							<div class='content red'>
+								<div class='green'>{{e.module.module_id}}</div>
+								{{e.module.pub_date}}<br/>
+								<span>T={{e.module.temperature}}&deg;C&nbsp;
+								H={{e.module.humidity}}<!--, {{e.module.val}}</span>-->
+							</div>
+						</a>
+					{%elif e.module.humidity < e.crit1  or e.module.val < e.crit1%}
+						<a href='/rasadnic/modul/{{e.module.module_id}}'>
+							<div class='content Blue'>
+								<div class='green'>{{e.module.module_id}}</div>
+								{{e.module.pub_date}}<br/>
+								<span>T={{e.module.temperature}}&deg;C&nbsp;
+								H={{e.module.humidity}}<--, {{e.module.val}}</span>-->
+							</div>
+						</a>
+					{%else%}
+						<a href='/rasadnic/modul/{{e.module.module_id}}'>
+							<div class='content'>
+								<div class='green'>{{e.module.module_id}}</div>
+								{{e.module.pub_date}}<br/>
+								<span>T={{e.module.temperature}}&deg;C&nbsp;
+								H={{e.module.humidity}}<!--, {{e.module.val}}</span>-->
+							</div>
+						</a>
+					{%endif%}
+				{%endif%}
+			{%endfor%}
+		</center>
+	</body>
+</html>
+

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="theme-color" content="#0d873a"/>
+		<title>
+			Solarii
+		</title>
+		<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+		<style>
+			html{
+				font-family: 'PT Sans', sans-serif;
+			}
+			.solar{
+				height:9.5vh;
+				margin:1px;
+				line-height:9.5vh;
+				font-size:5vh;
+			}
+			.no{
+				font-size:5vh;
+				float:left;
+				margin-left:10vw;
+			}
+			label{
+				pointer-events:none;
+				float:right;
+				margin-right:7%;
+			}
+			label input{
+				visibility:hidden;
+			}
+			label span1, label span2{
+				height:4vh;
+				width:4vh;
+				display:inline-block;
+				border:1px solid black;
+				border-radius:10%;
+				position:relative;
+				background-color:white;
+			}
+			#check1:checked + span1 {
+				background:blue;
+			}
+			#check2:checked + span2 {
+				background:blue;
+				
+			}
+			input{
+				margin-left:5px;
+			}
+			.bt{
+				line-height:9vh;
+				height:9vh;
+				margin-top:5px;
+				border-radius:5%;
+				font-size:6vh;	
+				background-color:gray;
+			}
+			a{
+				color:black;
+				text-decoration:none;
+			}
+			.head{
+				font-size:5vh;
+				margin-top:3px;
+				margin-bottom:10px;
+			}		
+		</style>
+	</head>
+	<body>
+		<center>
+			{%for e in entries%}
+				<a href='/solar/{{e.no}}'>
+					{%if e.active == -1%}
+						<div class='solar' style='background-color:gray'>
+							<div class='no'>
+								Solarul {{e.no}}
+							</div>
+							<label>
+								{%if e.ok1%}
+									<input id='check1' type="checkbox" checked onclick='return false;'>
+								{%else%}
+									<input id='check1' type="checkbox" onclick='return false;'>
+								{%endif%}
+								<span1></span1>
+								{%if e.ok2%}
+									<input id='check2' type="checkbox" checked onclick='return false;'>
+								{%else%}
+									<input id='check2' type="checkbox" onclick='return false;'>
+								{%endif%}
+								<span2></span2>
+							</label>
+						</div>
+					{%elif e.active == 1%}
+						<div class='solar' style='background-color:green'>
+							<div class='no'>
+								Solarul {{e.no}}
+							</div>
+							<label>
+								{%if e.ok1%}
+									<input id='check1' type="checkbox" checked onclick='return false;'>
+								{%else%}
+									<input id='check1' type="checkbox" onclick='return false;'>
+								{%endif%}
+								<span1></span1>
+								{%if e.ok2%}
+									<input id='check2' type="checkbox" checked onclick='return false;'>
+								{%else%}
+									<input id='check2' type="checkbox" onclick='return false;'>
+								{%endif%}
+								<span2></span2>
+							</label>
+						</div>
+					{%else%}
+						<div class='solar' style='background-color:red'>
+							<div class='no'>
+								Solarul {{e.no}}
+							</div>
+							<label>
+								{%if e.ok1%}
+									<input id='check1' type="checkbox" checked onclick='return false;'>
+								{%else%}
+									<input id='check1' type="checkbox" onclick='return false;'>
+								{%endif%}
+								<span1></span1>
+								{%if e.ok2%}
+									<input id='check2' type="checkbox" checked onclick='return false;'>
+								{%else%}
+									<input id='check2' type="checkbox" onclick='return false;'>
+								{%endif%}
+								<span2></span2>
+							</label>
+						</div>
+					{%endif%}
+				</a>
+			{%endfor%}
+			<a href='..'>
+				<div class='bt'>
+					Back
+				</div>
+			</a>
+		</center>
+	</body>
+</html>

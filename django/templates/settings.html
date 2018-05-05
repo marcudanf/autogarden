@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Setari
+		</title>
+		<meta name="theme-color" content="#0d873a" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+		<style>
+			html{
+				font-family: 'PT Sans', sans-serif;
+			}
+			.separator{
+				width:100%;
+				background-color:black;
+				height:3px;
+			}
+			input{
+				font-size:26px;
+				text-align:center;
+				width:70%;
+			}
+			.half{
+				width:30%;
+			}
+			a{
+				border-radius:5%;
+				color:black;
+				text-decoration:none;
+			}
+			.bt{
+				border-radius:10%;
+				width:70%;
+				background-color:gray;
+				font-size:32px;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+			<form method='POST'>
+				{%csrf_token%}
+				<h2>
+					Temperatura tavi
+				</h2>
+				<input name='thresh' type='number' placeholder='{{settings.thresh}}'></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<h2>
+					Prag umiditate
+				</h2>
+				<input name='critical_humidity' type='number' placeholder='{{settings.critical_humidity}}'></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<h2>
+					Timp pompare
+				</h2>
+				<input name='time_on' type='number' placeholder='{{settings.time_on}}'></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<h2>
+					Temperatura Aer
+				</h2>
+				<input class='half' name='temp_low' type='number' placeholder='{{settings.temp_low}}'></input>
+				-
+				<input class='half' name='temp_low2' type='number' placeholder='{{settings.temp_low2}}'></input>
+				<br/>
+				<input class='half' name='temp_high2' type='number' placeholder='{{settings.temp_high2}}'></input>
+				-
+				<input class='half' name='temp_high' type='number' placeholder='{{settings.temp_high}}'></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<h2>
+					Ore zi
+				</h2>
+				<input class='half' name='low_hour' type='number' placeholder='{{settings.low_hour}}'></input>
+				-
+				<input class='half' name='high_hour' type='number' placeholder='{{settings.high_hour}}'></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<h2>
+					Diferenta noapte
+				</h2>
+				<input name='night_diff' type='number' placeholder='{{settings.night_diff}}'></input>
+				<br/>
+				<br/>
+				<div class='separator'></div>
+				<br/>
+				<input type='submit' value='Change'></input>
+			</form>
+			<br/>
+			<a href='/rasadnic'>
+				<div class='bt'>
+					Home
+				</div>
+			</a>
+		</center>
+	</body>
+</html>
